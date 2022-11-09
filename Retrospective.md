@@ -1,7 +1,7 @@
 # Retrospective
 
-- name: Jane Doe
-- email: janedoe@u.boisestate.edu
+- name: Michael Butler
+- email: michaelbutler2@u.boisestate.edu
 
 ## Instructions
 
@@ -29,4 +29,4 @@ TODO
 
 ## Sources used
 
-TODO
+https://projects.verou.me/css3patterns/#lined-paper
