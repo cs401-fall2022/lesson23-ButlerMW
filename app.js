@@ -4,7 +4,7 @@ var { Liquid } = require('liquidjs');
 var engine = new Liquid();
 
 var indexRouter = require('./routes');
-// var createRouter = require('./routes/create');
+var createRouter = require('./routes/create');
 
 var app = express();
 
@@ -12,7 +12,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
-app.use('/create', indexRouter);
+app.use('/create', createRouter);
+// app.use('/edit/:id', indexRouter);
+
 
 // register liquid engine
 app.engine('liquid', engine.express()); 

@@ -3,33 +3,24 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>{{title}}</title>
+        <title>Home - {{title}}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <h1>--BLOG TITLE--</h1>
+        <h1> {{title}} </h1>
+        <a href="/create">Create New</a>
         <div>
             {% for txt in data %}
-            <div>{{ txt.blog_id }} </div>
-            <div> {{ txt.blog_txt }} </div>
-            <button>Edit</button>
+            <h3> --blog title-- {{ txt.blog_id }}</h3>
+            <p> {{ txt.blog_txt }} </p>
+            <a href="edit/{{ txt.blog_id }}">edit</a>
+            {%- comment -%} <button id={{ txt.blog_id }} class="edit-button">Edit</button> {%- endcomment -%}
             {% endfor %}
         </div>
 
-        <hr>
-        <h2>Add stuff</h2>
-        <form action="/add" method="POST">
-            <div>
-                <label for="blog">What is your blog txt?</label>
-                <input name="blog" id="blog" value="Hi this is my blog text!" />
-            </div>
-            <div>
-                <button>Send my blog</button>
-            </div>
-        </form>
-        <hr>
+   
         <h2>Delete stuff</h2>
                 <form action="/delete" method="POST">
             <div>

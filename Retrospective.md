@@ -30,3 +30,6 @@ TODO
 ## Sources used
 
 https://projects.verou.me/css3patterns/#lined-paper
+https://stackoverflow.com/questions/23923365/how-to-separate-routes-on-node-js-and-express-4/26829620
+https://stackoverflow.com/questions/21317981/cannot-get-nodejs-error
+https://www.youtube.com/watch?v=v3pA9lgd1H0

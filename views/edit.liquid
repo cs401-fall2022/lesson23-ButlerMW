@@ -3,27 +3,30 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Create New - {{title}}</title>
+        <title>Edit - {{title}}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <h1>Create a new blog</h1>
+        <h1>Update blog</h1>
 
-        <h2>Add stuff</h2>
-        <form action="/add" method="POST">
-            <div>
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" />
-            </div>
+         {% for txt in art %}
+            <h3> --blog title-- {{ txt.blog_id }}</h3>
+            <p> {{ txt.blog_txt }} </p>
+            <a href="edit/{{ txt.blog_id }}">edit</a>
+            <button id={{ txt.blog_id }} class="edit-button">Edit</button>
+          {% endfor %}
+
+        <hr>
+        <h2>Edit stuff {{ art.blog_id }}</h2>
+        <form action="/update" method="POST">
             <div>
                 <label for="blog">What is your blog txt?</label>
-                {%- comment -%} <input type="text" name="blog" id="blog" value="Write here" /> {%- endcomment -%}
-                <textarea name="blog" id="blog">Write something</textarea>
+                <input name="blog" id="blog" value={{ art.blog_txt }} />
             </div>
             <div>
-                <button>Submit</button>
+                <button>Send my blog</button>
             </div>
         </form>
         <hr>
@@ -31,11 +34,11 @@
                 <form action="/delete" method="POST">
             <div>
                 <label for="blog">Blog to delete?</label>
-                <input name="blog" id="blog" value="1" />
+                <input name="blog" id="blog" value="{{ txt.blog_id }}" />
             </div>
             <div>
                 <button>delete my blog</button>
             </div>
-        </form>
+        </form> 
     </body>
 </html>
