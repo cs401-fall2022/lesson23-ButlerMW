@@ -11,26 +11,16 @@
     <body>
         <h1> {{title}} </h1>
         <a href="/create">Create New</a>
-        <div>
-            {% for txt in data %}
-            <h3> {{ txt.blog_title }} </h3>
-            {%- comment -%} <p> {{ txt.blog_txt }} </p> {%- endcomment -%}
-            <a href="edit/{{ txt.blog_id }}">edit</a>
-            <a href="article/{{ txt.blog_id }}">View</a>
-            {%- comment -%} <button id={{ txt.blog_id }} class="edit-button">Edit</button> {%- endcomment -%}
-            {% endfor %}
-        </div>
-
-   
-        <h2>Delete stuff</h2>
-                <form action="/delete" method="POST">
+        {% for txt in data %}
+        <a href="article/{{ txt.blog_id }}">
             <div>
-                <label for="blog">Blog to delete?</label>
-                <input name="blog" id="blog" value="1" />
+                <h3> {{ txt.blog_title }} </h3>
+                {%- comment -%} <p> {{ txt.blog_txt }} </p> {%- endcomment -%}
+                <a href="edit/{{ txt.blog_id }}">edit</a>
+                {%- comment -%} <a href="article/{{ txt.blog_id }}">View</a> {%- endcomment -%}
+                {%- comment -%} <button id={{ txt.blog_id }} class="edit-button">Edit</button> {%- endcomment -%}
             </div>
-            <div>
-                <button>delete my blog</button>
-            </div>
-        </form>
+        </a>
+        {% endfor %}
     </body>
 </html>

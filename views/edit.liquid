@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Edit - {{ art.blog_title }}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <h3>{{ art.blog_title }}</h3>
+        <hr>
+        <p>{{ art.blog_txt }}</p>
+        <h2>Edit stuff {{ art.blog_id }}</h2>
+
+        <a href="/">Home</a>
+        <a href="/article/{{ art.blog_id}}/edit">Edit</a>
+        <form action="/update" method="POST">
+            <div>
+                <input name="blog" id="blog" value="{{art.blog_id}}" hidden />
+                <label for="blog">title change</label>
+                <input name="blog" id="blog" value="{{ art.blog_title }}" />
+            </div>
+            <div>
+                <label for="blog">What is your blog txt?</label>
+                {%- comment -%} <textarea name="blog" id="blog" value="{""{art.blog_txt}}" /> {%- endcomment -%}
+                <textarea name="blog" id="blog">{{ art.blog_txt }}</textarea>
+            </div>
+            <div>
+                <button>Send my blog</button>
+            </div>
+        </form>
+        <hr>
+        <h2>Delete stuff</h2>
+        <form action="/delete" method="POST">
+            <div>
+                <input name="blog" id="blog" value="{{art.blog_id}}" hidden />
+                <button>Delete this blog</button>
+            </div>
+        </form> 
+    </body>
+</html>

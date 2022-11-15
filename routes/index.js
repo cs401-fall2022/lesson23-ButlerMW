@@ -123,5 +123,52 @@ router.get('/article/:id', (req, res) => {
   // })
 })
 
+// Edit Article
+router.get('/article/:id/edit', (req, res) => {
+  console.log(`request id: `, req.params.id );
+  console.log(`request body.blog: `, req.body.blog );
+
+  var db = new sqlite3.Database('mydb.sqlite3',
+  sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
+  (err) => {
+    if (err) {
+      console.log("Getting error " + err);
+      exit(1);
+    }
+      // const art = db.all(`select from blog where blog_id=` + req.params.id + `;`);
+      console.log(`select from blog where blog_id= ` + req.params.id + `;`);
+      // console.log(art);
+  
+      db.get(`select * from blog where blog_id=` + req.params.id + `;`, (err, art) => {
+        console.log(art);
+        res.render('edit', { title: 'Writer\'s Block', art: art })
+      });
+    });
+
+  // document.findById(req.params.id, function(err, article) {
+    // res.render('edit', {article: article});
+  // })
+})
+
+// Update new article
+router.post('/update', (req, res, next) => {
+  var db = new sqlite3.Database('mydb.sqlite3',
+    sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
+    (err) => {
+      if (err) {
+        console.log("Getting error " + err);
+        exit(1);
+      }
+      console.log("updating " + req.body.blog[2]);
+      console.log("updating title: " + req.body.blog[1]);
+      console.log("article id updating: " + req.body.blog[0]);
+      // db.run(`insert into blog (blog_title, blog_txt) values (?, ?);`, [req.body.title, req.body.blog]);
+      db.run(`update blog set blog_title = (?), blog_txt = (?) where blog_id= (?);`, [req.body.blog[1], req.body.blog[2], req.body.blog[0]]);
+      //redirect to homepage
+      res.redirect('/');
+    }
+  );
+})
+
 
 module.exports = router;
