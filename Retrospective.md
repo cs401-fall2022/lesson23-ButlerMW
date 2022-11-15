@@ -25,7 +25,7 @@ TODO
 
 ## Known issues or Bugs
 
-TODO
+There was an issue with CSS not rendering for some of the .liquid files. 
 
 ## Sources used
 
@@ -33,3 +33,5 @@ https://projects.verou.me/css3patterns/#lined-paper
 https://stackoverflow.com/questions/23923365/how-to-separate-routes-on-node-js-and-express-4/26829620
 https://stackoverflow.com/questions/21317981/cannot-get-nodejs-error
 https://www.youtube.com/watch?v=v3pA9lgd1H0
+https://www.sqlitetutorial.net/sqlite-update/
+https://makeschool.org/mediabook/oa/tutorials/rotten-potatoes---movie-reviews-with-express-js/editing-a-review/

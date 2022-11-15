@@ -16,11 +16,23 @@
             <div>
                 <h3> {{ txt.blog_title }} </h3>
                 {%- comment -%} <p> {{ txt.blog_txt }} </p> {%- endcomment -%}
-                <a href="edit/{{ txt.blog_id }}">edit</a>
+                {%- comment -%} <a href="edit/{{ txt.blog_id }}">edit</a>
                 {%- comment -%} <a href="article/{{ txt.blog_id }}">View</a> {%- endcomment -%}
                 {%- comment -%} <button id={{ txt.blog_id }} class="edit-button">Edit</button> {%- endcomment -%}
             </div>
         </a>
         {% endfor %}
     </body>
-</html>
+</html>  
+
+{%- comment -%}  
+<h1> {{title}} </h1>
+<a href="/create">Create New</a>
+{% for txt in data %}
+<a href="article/{{ txt.blog_id }}">
+    <div>
+        <h3> {{ txt.blog_title }} </h3>
+    </div>
+</a>
+{% endfor %}
+ {%- endcomment -%}

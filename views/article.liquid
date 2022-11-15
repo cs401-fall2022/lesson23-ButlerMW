@@ -7,6 +7,10 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/style.css">
+        {%- comment -%} <link rel="stylesheet" href="../public/css/style.css"> {%- endcomment -%}
+        {%- comment -%} <link rel='stylesheet' type='text/css' media='screen' href='{{ 'style.css.liquid' | asset_url }}'> {%- endcomment -%}
+        {%- comment -%} {{ 'style.css.liquid' | asset_url | stylesheet_tag }} {%- endcomment -%}
+        </style>
     </head>
     <body>
         <h3>{{ art.blog_title }}</h3>
@@ -17,7 +21,7 @@
         <a href="/">Home</a>
         <hr>
         
-        <a href="/article/{{ art.blog_id}}/edit">Edit</a>
+        <a href="/article/{{ art.blog_id }}/edit">Edit</a>
         <hr>
 
         <form action="/delete" method="POST">
