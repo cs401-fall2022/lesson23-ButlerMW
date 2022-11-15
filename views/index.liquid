@@ -13,9 +13,10 @@
         <a href="/create">Create New</a>
         <div>
             {% for txt in data %}
-            <h3> --blog title-- {{ txt.blog_id }}</h3>
-            <p> {{ txt.blog_txt }} </p>
+            <h3> {{ txt.blog_title }} </h3>
+            {%- comment -%} <p> {{ txt.blog_txt }} </p> {%- endcomment -%}
             <a href="edit/{{ txt.blog_id }}">edit</a>
+            <a href="article/{{ txt.blog_id }}">View</a>
             {%- comment -%} <button id={{ txt.blog_id }} class="edit-button">Edit</button> {%- endcomment -%}
             {% endfor %}
         </div>

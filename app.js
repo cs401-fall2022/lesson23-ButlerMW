@@ -4,20 +4,24 @@ var { Liquid } = require('liquidjs');
 var engine = new Liquid();
 
 var indexRouter = require('./routes');
-var createRouter = require('./routes/create');
+// var createRouter = require('./routes/create');
 
 var app = express();
+
+const mongoose = require('mongoose');
+// mongoose.connect()
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
-app.use('/create', createRouter);
+// app.use('/create', createRouter);
 // app.use('/edit/:id', indexRouter);
 
 
 // register liquid engine
 app.engine('liquid', engine.express()); 
+// app.set('layout', './views/layout');
 app.set('views', './views');            // specify the views directory
 app.set('view engine', 'liquid');       // set liquid to default
 

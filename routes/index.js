@@ -3,7 +3,6 @@ var router = express.Router();
 const sqlite3 = require('sqlite3').verbose()
 // const update = document.querySelector('.edit-button')
 
-
 /* GET home page. */
 router.get('/', function (req, res, next) {
   var db = new sqlite3.Database('mydb.sqlite3',
@@ -18,7 +17,7 @@ router.get('/', function (req, res, next) {
         (err, rows) => {
           if (rows.length === 1) {
             console.log("Table exists!");
-            db.all(` select blog_id, blog_txt from blog`, (err, rows) => {
+            db.all(` select blog_id, blog_title, blog_txt from blog`, (err, rows) => {
               console.log("returning " + rows.length + " records");
               res.render('index', { title: 'Writer\'s Block', data: rows });
             });
@@ -26,9 +25,10 @@ router.get('/', function (req, res, next) {
             console.log("Creating table and inserting some sample data");
             db.exec(`create table blog (
                      blog_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                     blog_title VARCHAR(50) NOT NULL,
                      blog_txt text NOT NULL);`,
               () => {
-                db.all(` select blog_id, blog_txt from blog`, (err, rows) => {
+                db.all(` select blog_id, blog_title, blog_txt from blog`, (err, rows) => {
                   console.log(rows);
                   res.render('index', { title: 'Express Todo List', data: rows });
                 });
@@ -38,6 +38,7 @@ router.get('/', function (req, res, next) {
     });
 });
 
+// Add new article
 router.post('/add', (req, res, next) => {
   var db = new sqlite3.Database('mydb.sqlite3',
     sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
@@ -47,13 +48,15 @@ router.post('/add', (req, res, next) => {
         exit(1);
       }
       console.log("inserting " + req.body.blog);
-      db.run(`insert into blog ( blog_txt) values (?);`, [req.body.blog]);
+      console.log("iserting title: " + req.body.title);
+      db.run(`insert into blog (blog_title, blog_txt) values (?, ?);`, [req.body.title, req.body.blog]);
       //redirect to homepage
       res.redirect('/');
     }
   );
 })
 
+// Delete Article
 router.post('/delete', (req, res, next) => {
   var db = new sqlite3.Database('mydb.sqlite3',
     sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
@@ -70,40 +73,10 @@ router.post('/delete', (req, res, next) => {
 })
 
 
-// // GET create page. */
-// router.get('/create', function (req, res, next) {
-//   res.render('create', { title: 'WRITER\'S BLOCK' })
-  
-//   // var db = new sqlite3.Database('mydb.sqlite3',
-//   //   sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
-//   //   (err) => {
-//   //     if (err) {
-//   //       console.log("Getting error " + err);
-//   //       exit(1);
-//   //     }
-//   //     //Query if the table exists if not lets create it on the fly!
-//   //     db.all(`SELECT name FROM sqlite_master WHERE type='table' AND name='blog'`,
-//   //       (err, rows) => {
-//   //         if (rows.length === 1) {
-//   //           console.log("Table exists!");
-//   //           db.all(` select blog_id, blog_txt from blog`, (err, rows) => {
-//   //             console.log("returning " + rows.length + " records");
-//   //             res.render('index', { title: 'Express Todo List', data: rows });
-//   //           });
-//   //         } else {
-//   //           console.log("Creating table and inserting some sample data");
-//   //           db.exec(`create table blog (
-//   //                    blog_id INTEGER PRIMARY KEY AUTOINCREMENT,
-//   //                    blog_txt text NOT NULL);`,
-//   //             () => {
-//   //               db.all(` select blog_id, blog_txt from blog`, (err, rows) => {
-//   //                 res.render('index', { title: 'Express Todo List', data: rows });
-//   //               });
-//   //             });
-//   //         }
-//   //       });
-//   //   });
-// });
+// GET create page. */
+router.get('/create', function (req, res, next) {
+  res.render('create', { title: 'WRITER\'S BLOCK' })
+});
 
 // GET edit page. */
 // router.get('/edit/:blog_id', function (req, res, next) {
@@ -123,8 +96,8 @@ router.post('/delete', (req, res, next) => {
 // });
 
 
-// EDIT
-router.get('/edit/:id', (req, res) => {
+// View Article
+router.get('/article/:id', (req, res) => {
   console.log(`request id: `, req.params.id );
   console.log(`request body.blog: `, req.body.blog );
 
@@ -137,11 +110,11 @@ router.get('/edit/:id', (req, res) => {
     }
       // const art = db.all(`select from blog where blog_id=` + req.params.id + `;`);
       console.log(`select from blog where blog_id= ` + req.params.id + `;`);
-      console.log(art);
+      // console.log(art);
   
-      db.all(`select from blog where blog_id=` + req.params.id + `;`, (err, art) => {
+      db.get(`select * from blog where blog_id=` + req.params.id + `;`, (err, art) => {
         console.log(art);
-        res.render('edit', { title: 'Writer\'s Block', art: art })
+        res.render('article', { title: 'Writer\'s Block', art: art })
       });
     });
 
