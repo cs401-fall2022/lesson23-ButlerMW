@@ -47,6 +47,10 @@ router.post('/add', (req, res, next) => {
         console.log("Getting error " + err);
         exit(1);
       }
+      if (req.body.title.length < 1) {
+        console.log("must have a title");
+        return;
+      }
       console.log("inserting " + req.body.blog);
       console.log("iserting title: " + req.body.title);
       db.run(`insert into blog (blog_title, blog_txt) values (?, ?);`, [req.body.title, req.body.blog]);
@@ -158,6 +162,10 @@ router.post('/update', (req, res, next) => {
       if (err) {
         console.log("Getting error " + err);
         exit(1);
+      }
+      if (req.body.blog[1].length < 1) {
+        console.log("must have title");
+        return;
       }
       console.log("updating " + req.body.blog[2]);
       console.log("updating title: " + req.body.blog[1]);
