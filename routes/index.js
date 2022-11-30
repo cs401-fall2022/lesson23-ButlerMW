@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const sqlite3 = require('sqlite3').verbose()
-// const update = document.querySelector('.edit-button')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -82,24 +81,6 @@ router.get('/create', function (req, res, next) {
   res.render('create', { title: 'WRITER\'S BLOCK' })
 });
 
-// GET edit page. */
-// router.get('/edit/:blog_id', function (req, res, next) {
-//   console.log(`request id: `, req.params.blog_id );
-//   // res.render('edit', { title: 'WRITER\'S BLOCK' });
-
-//   var db = new sqlite3.Database('mydb.sqlite3',
-//   sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE,
-//   (err) => {
-//     if (err) {
-//       console.log("Getting error " + err);
-//       exit(1);
-//     }
-//       // blog = db.run(`select from blog where blog_id= (?);`, [req.params.blog_id]);
-//   });
-
-// });
-
-
 // View Article
 router.get('/article/:id', (req, res) => {
   console.log(`request id: `, req.params.id );
@@ -112,19 +93,13 @@ router.get('/article/:id', (req, res) => {
       console.log("Getting error " + err);
       exit(1);
     }
-      // const art = db.all(`select from blog where blog_id=` + req.params.id + `;`);
       console.log(`select from blog where blog_id= ` + req.params.id + `;`);
-      // console.log(art);
   
       db.get(`select * from blog where blog_id=` + req.params.id + `;`, (err, art) => {
         console.log(art);
         res.render('article', { title: 'Writer\'s Block', art: art })
       });
     });
-
-  // document.findById(req.params.id, function(err, article) {
-    // res.render('edit', {article: article});
-  // })
 })
 
 // Edit Article
@@ -139,7 +114,6 @@ router.get('/article/:id/edit', (req, res) => {
       console.log("Getting error " + err);
       exit(1);
     }
-      // const art = db.all(`select from blog where blog_id=` + req.params.id + `;`);
       console.log(`select from blog where blog_id= ` + req.params.id + `;`);
       // console.log(art);
   
@@ -148,10 +122,6 @@ router.get('/article/:id/edit', (req, res) => {
         res.render('edit', { title: 'Writer\'s Block', art: art })
       });
     });
-
-  // document.findById(req.params.id, function(err, article) {
-    // res.render('edit', {article: article});
-  // })
 })
 
 // Update new article
@@ -170,7 +140,6 @@ router.post('/update', (req, res, next) => {
       console.log("updating " + req.body.blog[2]);
       console.log("updating title: " + req.body.blog[1]);
       console.log("article id updating: " + req.body.blog[0]);
-      // db.run(`insert into blog (blog_title, blog_txt) values (?, ?);`, [req.body.title, req.body.blog]);
       db.run(`update blog set blog_title = (?), blog_txt = (?) where blog_id= (?);`, [req.body.blog[1], req.body.blog[2], req.body.blog[0]]);
       //redirect to homepage
       res.redirect('/');

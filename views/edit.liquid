@@ -11,8 +11,6 @@
     <body>
         <h3 class="article-header">EDIT - {{ art.blog_title }}</h3>
         <hr>
-        {%- comment -%} <p>{{ art.blog_txt }}</p> {%- endcomment -%}
-        {%- comment -%} <h2>Edit stuff {{ art.blog_id }}</h2> {%- endcomment -%}
         <div class="form-container">
             <form action="/update" method="POST">
                 <div>
@@ -31,7 +29,6 @@
             </form>
         </div>
         <hr>
-        {%- comment -%} <h2>Delete stuff</h2> {%- endcomment -%}
         <form action="/delete" method="POST">
             <div class="button-container">
                 <a class="home-button" href="/">Home</a>
