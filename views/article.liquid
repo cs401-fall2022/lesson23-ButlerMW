@@ -10,21 +10,17 @@
         </style>
     </head>
     <body>
-        <h3 class="">{{ art.blog_title }}</h3>
+        <h3 class="article-header">{{ art.blog_title }}</h3>
         <hr>
         <p>{{ art.blog_txt }}</p>
         <hr>
 
-        <a href="/">Home</a>
-        <hr>
-        
-        <a href="/article/{{ art.blog_id }}/edit">Edit</a>
-        <hr>
-
         <form action="/delete" method="POST">
-            <div>
+            <div class="button-container">
+                <a class="home-button" href="/">Home</a>
+                <a class="edit-button" href="/article/{{ art.blog_id }}/edit">Edit</a>
                 <input name="blog" id="blog" value="{{art.blog_id}}" hidden />
-                <button>Delete this blog</button>
+                <button class="delete-button">Delete</button>
             </div>
         </form> 
     </body>
