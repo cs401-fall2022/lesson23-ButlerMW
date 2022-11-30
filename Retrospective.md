@@ -21,11 +21,15 @@ Be safe CITE!
 
 ## Experience
 
-TODO
+There was an issue with CSS not rendering for some of the .liquid files, which was just a simple solution. The hardest part of the project was working to create the update page and the logic to keep the id of the original blog post and just update the blog text or title. It took sometime to figure out how to get the update to work correctly. A large amount of time was taken to research and test the update feature. 
+
+The project instructions were clear on the requirements for the project, but left a great amount of opportunity for creativity. 
+
+The project is entirely completed.
 
 ## Known issues or Bugs
 
-There was an issue with CSS not rendering for some of the .liquid files. 
+There is a small bug that occurs in the home title when the page gets reloaded, the title starts out small and then gets to the correct title size. 
 
 ## Sources used
 
