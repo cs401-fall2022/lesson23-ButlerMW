@@ -9,24 +9,24 @@
         <link rel="stylesheet" href="/css/style.css">
     </head>
     <body>
-        <h1>Create a new blog</h1>
-        <a href="/">HOME</a>
-        <h2>Add stuff</h2>
-        <form action="/add" method="POST">
-            <div>
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" />
-                <span id="errmessage" hidden>You must have a title</span>
-            </div>
-            <div>
-                <label for="blog">What is your blog txt?</label>
-                {%- comment -%} <input type="text" name="blog" id="blog" value="Write here" /> {%- endcomment -%}
-                <textarea name="blog" id="blog">Write something</textarea>
-            </div>
-            <div>
-                <button>Submit</button>
-            </div>
-        </form>
+        <h1><span hidden>New blog</span></h1>
+        <h2>Create a new blog</h2>
+        <div class="form-container">
+            <form action="/add" method="POST">
+                <div>
+                    <label for="title">Title</label>
+                    <input type="text" name="title" id="title" />
+                </div>
+                <div>
+                    <label for="blog">Blog</label>
+                    <textarea name="blog" id="blog">Write something</textarea>
+                </div>
+                <div>
+                    <a class="cancel-button" href="/">Cancel</a>
+                    <button class="submit-button">Submit</button>
+                </div>
+            </form>
+        </div>
         <hr>
     </body>
 </html>

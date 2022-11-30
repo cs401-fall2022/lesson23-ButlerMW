@@ -15,7 +15,6 @@
         <h2>Edit stuff {{ art.blog_id }}</h2>
 
         <a href="/">Home</a>
-        <a href="/article/{{ art.blog_id}}/edit">Edit</a>
         <form action="/update" method="POST">
             <div>
                 <input name="blog" id="blog" value="{{art.blog_id}}" hidden />
@@ -24,11 +23,10 @@
             </div>
             <div>
                 <label for="blog">What is your blog txt?</label>
-                {%- comment -%} <textarea name="blog" id="blog" value="{""{art.blog_txt}}" /> {%- endcomment -%}
                 <textarea name="blog" id="blog">{{ art.blog_txt }}</textarea>
             </div>
             <div>
-                <button>Send my blog</button>
+                <button>Update</button>
             </div>
         </form>
         <hr>
